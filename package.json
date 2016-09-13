@@ -1,6 +1,6 @@
 {
   "name": "redux-action-factory",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple library for creating schema-validated Redux Actions (or thunks, promises, etc.). Powered by the awesomely awesome Schema-Inspector.",
   "main": "./lib/index.js",
   "scripts": {

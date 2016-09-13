@@ -109,8 +109,8 @@ Creates and initializes the Action Factory every time it is called. Only the las
     "ACTION": {
         "type": {string}
         "args": {object}
-        "sanitize": {object}
-        "creator": {string}
+        "sanitize": {object} //optional
+        "creator": {string} //optional
     }
 }
 ```

@@ -1,0 +1,26 @@
+{
+  "ACTION1": {
+    "type": "ACTION1",
+    "args": {
+      "type": "object",
+      "strict": true,
+      "properties": {
+        "a": {"type": "number"},
+        "b": {"type": "boolean"}
+      }
+    },
+    "sanitize": {
+      "type": "object",
+      "properties": {
+        "a": {"type": "number"}
+      }
+    }
+  },
+  "ACTION2": {
+    "type": "ACTION2",
+    "args": {
+      "c": {"type": "string"}
+    },
+    "creator": "createAction2"
+  }
+}

@@ -1,7 +1,22 @@
-var initialize = require('../lib/index').default.initialize;
+var initializeActionFactory = require('../../lib/index').default.initialize;
 var actionsSchema = require('./actions.json');
 
-//TODO
-initialize({
-    actions: actionsSchema
+initializeActionFactory({
+    actions: actionsSchema,
+    actionCreators: {
+        createAction2: function (rawAction, injected) {
+            return function (dispatch) {
+                dispatch(rawAction);
+
+                var API = injected.API;
+                API.sendData(rawAction.c);
+            }
+        }
+    },
+    inject: {
+        API: {
+            // Fake API stub
+            sendData: function (data) {console.log(data)}
+        }
+    }
 });

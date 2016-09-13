@@ -10,7 +10,7 @@
     "test:examples": "node examples/",
     "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha `find ./test -name '*.test.js'` -- -r test/index.js --compilers js:babel-register",
     "lint": "eslint src test",
-    "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib && cp src/configSchema.json lib/",
     "prepublish": "npm run clean && npm run lint && npm test && npm run build"
   },
   "files": [

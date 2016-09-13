@@ -16,12 +16,12 @@ With Redux Action Factory, good maintenance is achieved by:
 - Centralizing the Actions' specification in a file.
 - Ensuring robustness in the action creation process by checking arguments' types.
 - Eliminating the need for synchronous actions' Action Creators.
-- Providing a common interface and place for all Complex Action Creators (asynchronous action creators, thunks, etc.).
+- Providing a common interface and place for all complex Action Creators (asynchronous action creators, thunks, etc.).
 
 Furthermore, it has been designed with Unit Testing in mind.
 
 ## Usage
-### Initialize the factory
+#### Initialize the factory
 In your index.js you should put something similar to:
 
 index.js:
@@ -41,7 +41,7 @@ initialize({
 import {initialize} from 'redux-action-factory';
 ```
 
-### Create a specification file for your actions
+#### Create a specification file for your actions
 Example of actions.json:
 ```json
 {
@@ -55,15 +55,15 @@ Example of actions.json:
 }
 ```
 
-### Use it to create actions
+#### Use it to create actions
 Somewhere in your app:
 ```js
 var createAction = require('redux-action-factory').default.createAction;
 
-dispatch(createAction('ACTION_NAME', {actionParam1: 42, actionParam2: 'Insignificant data'}));
+dispatch(createAction('ACTION_NAME', {actionParam1: 42, actionParam2: 'Other data'}));
 ```
 
-### And finally, a little change in the reducers
+#### And finally, a little change in the reducers
 In your reducers, instead of:
 ```js
 case 'ACTION_NAME':
@@ -77,15 +77,16 @@ var type = require('redux-action-factory').default.type;
 case type('ACTION_NAME'):
 ```
 
-### Testing
+#### Testing
 When testing, if you need to check if the proper action was created but you don't want to trigger any side effects or execute 
 any Action Creator code, you can use the `createRawAction` method as follows:
 ```js
 var createRawAction = require('redux-action-factory').default.createRawAction;
 
 // This won't execute the Action Creator function
-createRawAction('ACTION_NAME', {actionParam1: 42, actionParam2: 'Insignificant data'});
+createRawAction('ACTION_NAME', {actionParam1: 42, actionParam2: 'Other data'});
 ```
+
 
 ## API
 ### initialize
@@ -103,7 +104,7 @@ Creates and initializes the Action Factory every time it is called. Only the las
     (like APIs interfaces) into every action creator.
 
 ### Actions
-```json
+```js
 {
     "ACTION": {
         "type": {string}
@@ -152,5 +153,8 @@ createRawAction(actionName, params)
 ```
 Same as `createAction`, but it always returns the raw action object without calling the actionCreator (if there was one).
 
-## Thanks
+
+## Thanks and contributing
 Thanks to the boilerplate's authors Travelport-Ukraine for [npm-module-boilerplate-es6](https://github.com/Travelport-Ukraine/npm-module-boilerplate).
+
+If you have an idea on how to improve this library, I listen to suggestions here in the [issues channel](https://github.com/kwirke/redux-action-factory/issues).

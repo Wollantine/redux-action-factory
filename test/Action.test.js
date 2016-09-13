@@ -3,9 +3,9 @@ import sinon from 'sinon';
 
 
 const buildSpecs = (type = 'ACTION_NAME', args = {}, sanitize, creator) => {
-    let specs = {
+    const specs = {
         type,
-        args
+        args,
     };
     if (sanitize) specs.sanitize = sanitize;
     if (creator) specs.creator = creator;
@@ -15,7 +15,7 @@ const buildSpecs = (type = 'ACTION_NAME', args = {}, sanitize, creator) => {
 describe('Action', () => {
 
     it('should throw if called without specs', () => {
-        const createAction = () => {new Action()};
+        const createAction = () => (new Action());
         createAction.should.throw(Error);
     });
 
@@ -34,12 +34,12 @@ describe('Action', () => {
         const action = new Action(specs, {data: 'a'});
         action.getDispatchable().should.deep.equal({
             type: 'ACTION_NAME',
-            data: 'a'
+            data: 'a',
         });
     });
 
     it('should validate the data against the schema', () => {
-        const createAction = (...params) => {new Action(...params)};
+        const createAction = (...params) => (new Action(...params));
         const specs = buildSpecs(undefined, {type: 'object', properties: {data: {type: 'string'}}});
         createAction.bind(null, specs, {data: 42}).should.throw(Error);
     });
@@ -51,8 +51,8 @@ describe('Action', () => {
         const action = new Action(specs, {data: 42});
         action.getDispatchable().should.deep.equal({
             type: 'ACTION_NAME',
-            data: '42'
-        })
+            data: '42',
+        });
     });
 
     describe('upon calling getDispatchable', () => {
@@ -75,7 +75,7 @@ describe('Action', () => {
             const creator = sinon.spy();
             const injectedProps = {
                 a: 'I want to be injected',
-                b: () => {return 'I will return if I am injected'}
+                b: () => ('I will return if I am injected'),
             };
             const action = new Action(specs, {data: 'a'}, creator, injectedProps);
             const rawAction = action.rawAction();

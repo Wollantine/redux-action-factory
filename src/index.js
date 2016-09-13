@@ -3,7 +3,7 @@ import {
     createRawAction,
     type,
     initialize,
-    getConfig
+    getConfig,
 } from './action-factory-lib';
 
 export default {
@@ -11,5 +11,5 @@ export default {
     createRawAction,
     type,
     initialize,
-    getConfig
+    getConfig,
 };

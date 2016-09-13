@@ -8,7 +8,7 @@ export default class ActionFactory {
         // console.log(conf);
         inspector.sanitize(configSchema.sanitization, conf);
         // console.log(conf);
-        let result = inspector.validate(configSchema.validation, conf);
+        const result = inspector.validate(configSchema.validation, conf);
         if (!result.valid) {
             throw new Error(result.format());
         }
@@ -16,8 +16,8 @@ export default class ActionFactory {
     }
 
     constructor(conf) {
-        conf = this._validateConf(conf);
-        this.conf = conf;
+        const config = this._validateConf(conf);
+        this.conf = config;
     }
 
     getConfig() {
@@ -28,10 +28,11 @@ export default class ActionFactory {
         let creator = false;
         const creatorName = actionSpecs.creator;
 
-        if (typeof creatorName != 'undefined') {
+        if (typeof creatorName !== 'undefined') {
             creator = this.conf.actionCreators[creatorName];
-            if (typeof creator == 'undefined') {
-                throw new Error('Creator '+creatorName+' has not been defined for action '+actionSpecs.type+'. Check the parameter "actionCreators" in the initialization config.')
+            if (typeof creator === 'undefined') {
+                throw new Error('Creator '+creatorName+' has not been defined for action '+actionSpecs.type+
+                    '. Check the parameter "actionCreators" in the initialization config.');
             }
         }
 
@@ -39,7 +40,7 @@ export default class ActionFactory {
     }
 
     _createAction(actionName, actionData) {
-        if (typeof this.conf.actions[actionName] == 'undefined') {
+        if (typeof this.conf.actions[actionName] === 'undefined') {
             throw new Error('Action '+actionName+' has not been defined');
         }
         const specs = this.conf.actions[actionName];
@@ -48,8 +49,7 @@ export default class ActionFactory {
         let action;
         if (actionCreator) {
             action = new Action(specs, actionData, actionCreator, this.conf.inject);
-        }
-        else {
+        } else {
             action = new Action(specs, actionData, undefined, this.conf.inject);
         }
 

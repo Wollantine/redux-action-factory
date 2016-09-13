@@ -4,7 +4,7 @@ import sinon from 'sinon';
 
 export default () => {
 
-    let conf = {
+    const conf = {
         actions: {
             CREATORLESS_ACTION: {
                 type: 'CREATORLESS_ACTION',
@@ -12,16 +12,16 @@ export default () => {
                     type: 'object',
                     strict: true,
                     properties: {
-                        data: {type: 'string'}
-                    }
+                        data: {type: 'string'},
+                    },
                 },
                 sanitize: {
                     type: 'object',
                     strict: true,
                     properties: {
-                        data: {}
-                    }
-                }
+                        data: {},
+                    },
+                },
             },
             CREATORLY_ACTION: {
                 type: 'CREATORLY_ACTION',
@@ -29,35 +29,35 @@ export default () => {
                     type: 'object',
                     strict: true,
                     properties: {
-                        data: {type: 'string'}
-                    }
+                        data: {type: 'string'},
+                    },
                 },
                 sanitize: {
                     type: 'object',
                     strict: true,
                     properties: {
-                        data: {}
-                    }
+                        data: {},
+                    },
                 },
-                creator: 'someMinorGod'
+                creator: 'someMinorGod',
             },
             WRONG_CREATOR_ACTION: {
                 type: 'WRONG_CREATOR_ACTION',
                 args: {},
-                creator: 'realGod' // doesn't exist
-            }
+                creator: 'realGod', // doesn't exist
+            },
         },
         actionCreators: {
-            someMinorGod: () => {return 42;}
+            someMinorGod: () => (42),
         },
         inject: {
-            injectedData: 'Vaccine'
-        }
+            injectedData: 'Vaccine',
+        },
     };
 
-    let af = new ActionFactory(conf);
+    const af = new ActionFactory(conf);
 
-    let createAction = af.createAction.bind(af);
+    const createAction = af.createAction.bind(af);
 
     describe('when action does not define creator', rawActionTest(createAction, 'CREATORLESS_ACTION'));
 
@@ -72,11 +72,11 @@ export default () => {
         });
 
         it('should inject data passed on config.inject', () => {
-            let creator = sinon.spy(conf.actionCreators, 'someMinorGod');
+            const creator = sinon.spy(conf.actionCreators, 'someMinorGod');
             createAction('CREATORLY_ACTION', {data: 'a'});
             creator.should.have.been.calledWith({
                 type: 'CREATORLY_ACTION',
-                data: 'a'
+                data: 'a',
             }, {injectedData: 'Vaccine'});
         });
 

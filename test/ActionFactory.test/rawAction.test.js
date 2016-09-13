@@ -1,5 +1,5 @@
 
-export default (create, actionName) => ( () => {
+export default (create, actionName) => (() => {
 
     it('should return an object', () => {
         create(actionName, {data: 'a'}).should.be.an('object');
@@ -16,7 +16,7 @@ export default (create, actionName) => ( () => {
     it('should ignore non specified data params', () => {
         create(actionName, {data: 'a', unspecified: 'b'}).should.deep.equal({
             type: actionName,
-            data: 'a'
+            data: 'a',
         });
     });
 

@@ -6,7 +6,7 @@ class Action {
         if (specs.sanitize) {
             inspector.sanitize(specs.sanitize, data);
         }
-        let result = inspector.validate(specs.args, data);
+        const result = inspector.validate(specs.args, data);
         if (!result.valid) {
             throw new Error('Missing or wrong arguments for action '+specs.type+':\n'+result.format());
         }
@@ -31,8 +31,8 @@ class Action {
     rawAction() {
         return {
             type: this.type,
-            ...this.data
-        }
+            ...this.data,
+        };
     }
 
 }

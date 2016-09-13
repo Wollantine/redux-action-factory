@@ -4,7 +4,7 @@ import {
     type,
     initialize,
     getConfig,
-    config
+    config,
 } from '../src/action-factory-lib';
 import ActionFactory from '../src/ActionFactory';
 import sinon from 'sinon';
@@ -15,7 +15,7 @@ const lib = {
     type,
     initialize,
     getConfig,
-    config
+    config,
 };
 
 describe('action-factory', () => {
@@ -69,7 +69,7 @@ describe('action-factory', () => {
         it('should have no ActionFactory and no actionTypes', () => {
             lib.config.should.deep.equal({
                 actionFactory: null,
-                actionTypes: null
+                actionTypes: null,
             });
         });
 
@@ -79,9 +79,9 @@ describe('action-factory', () => {
         actions: {
             ACTION_NAME: {
                 type: 'ACTION',
-                args: {}
-            }
-        }
+                args: {},
+            },
+        },
     };
 
     describe('initialize', () => {
@@ -92,7 +92,7 @@ describe('action-factory', () => {
         });
 
         it('should replace the ActionFactory when called again', () => {
-            let firstActionFactory = lib.config.actionFactory;
+            const firstActionFactory = lib.config.actionFactory;
             lib.initialize(conf);
             lib.config.actionFactory.should.not.equal(firstActionFactory);
         });
@@ -102,7 +102,7 @@ describe('action-factory', () => {
     describe('getConfig', () => {
 
         it('should call ActionFactory.getConfig', () => {
-            let method = sinon.spy(lib.config.actionFactory, 'getConfig');
+            const method = sinon.spy(lib.config.actionFactory, 'getConfig');
             lib.getConfig();
             method.should.have.been.called;
         });
@@ -128,7 +128,7 @@ describe('action-factory', () => {
     describe('createAction', () => {
 
         it('should call ActionFactory.createAction', () => {
-            let method = sinon.spy(lib.config.actionFactory, 'createAction');
+            const method = sinon.spy(lib.config.actionFactory, 'createAction');
             lib.createAction('ACTION_NAME');
             method.should.have.been.called;
         });
@@ -138,7 +138,7 @@ describe('action-factory', () => {
     describe('createRawAction', () => {
 
         it('should call ActionFactory.createRawAction', () => {
-            let method = sinon.spy(lib.config.actionFactory, 'createRawAction');
+            const method = sinon.spy(lib.config.actionFactory, 'createRawAction');
             lib.createRawAction('ACTION_NAME');
             method.should.have.been.called;
         });

@@ -2,7 +2,7 @@ import ActionFactory from '../../src/ActionFactory';
 
 export default () => {
 
-    let init = (...args) => (new ActionFactory(...args));
+    const init = (...args) => (new ActionFactory(...args));
 
     it('should throw Error when called without args', () => {
         init.should.throw(Error);
@@ -27,8 +27,8 @@ export default () => {
     it('should throw SyntaxError when actions config parameter does not have the right structure', () => {
         init.bind(null, {actions: {
             ACTION_NAME: {
-                wrong: 'wrong!'
-            }
+                wrong: 'wrong!',
+            },
         }}).should.throw(Error);
     });
 
@@ -43,10 +43,10 @@ export default () => {
     it('should throw Error when actionCreators config parameter is required and not present', () => {
         init.bind(null, {actions: {
             ACTION_NAME: {
-                type: "ACTION",
+                type: 'ACTION',
                 args: [],
-                creator: 'a'
-            }
+                creator: 'a',
+            },
         }}).should.throw(Error);
     });
 

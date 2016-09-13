@@ -9,11 +9,11 @@ export default () => {
                 ACTION_NAME: {
                     type: 'ACTION_NAME',
                     args: {},
-                    sanitize: {}
-                }
-            }
+                    sanitize: {},
+                },
+            },
         };
-        let af = new ActionFactory({actions: {ACTION_NAME: {type: 'ACTION_NAME'}}});
+        const af = new ActionFactory({actions: {ACTION_NAME: {type: 'ACTION_NAME'}}});
         af.getConfig().should.deep.equal(expected);
     });
 

@@ -1,6 +1,6 @@
 {
-  "name": "npm-module-boilerplate-es6",
-  "version": "0.0.1",
+  "name": "redux-action-factory",
+  "version": "0.1.0",
   "description": "Simple library for creating schema-validated Redux Actions (or thunks, promises, etc.). Powered by the awesomely awesome Schema-Inspector.",
   "main": "./lib/index.js",
   "scripts": {

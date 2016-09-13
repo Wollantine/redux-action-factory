@@ -4,7 +4,7 @@ import rawActionTest from './rawAction.test';
 export default () => {
 
 
-    let af = new ActionFactory({
+    const af = new ActionFactory({
         actions: {
             CREATORLESS_ACTION: {
                 type: 'CREATORLESS_ACTION',
@@ -12,16 +12,16 @@ export default () => {
                     type: 'object',
                     strict: true,
                     properties: {
-                        data: {type: 'string'}
-                    }
+                        data: {type: 'string'},
+                    },
                 },
                 sanitize: {
                     type: 'object',
                     strict: true,
                     properties: {
-                        data: {}
-                    }
-                }
+                        data: {},
+                    },
+                },
             },
             CREATORLY_ACTION: {
                 type: 'CREATORLY_ACTION',
@@ -29,25 +29,25 @@ export default () => {
                     type: 'object',
                     strict: true,
                     properties: {
-                        data: {type: 'string'}
-                    }
+                        data: {type: 'string'},
+                    },
                 },
                 sanitize: {
                     type: 'object',
                     strict: true,
                     properties: {
-                        data: {}
-                    }
+                        data: {},
+                    },
                 },
-                creator: 'getClassy'
-            }
+                creator: 'someMinorGod',
+            },
         },
         actionCreators: {
-            getClassy: () => {return 42;}
-        }
+            someMinorGod: () => (42),
+        },
     });
 
-    let createRawAction = af.createRawAction.bind(af);
+    const createRawAction = af.createRawAction.bind(af);
 
     // It should create a raw action
     describe('when action does not define creator', rawActionTest(createRawAction, 'CREATORLESS_ACTION'));

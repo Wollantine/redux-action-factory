@@ -1,7 +1,22 @@
 {
+  "ecmaFeatures": {
+    "modules": true
+  },
   "parser": "babel-eslint",
   "extends": "airbnb",
   "env": {
+    "es6": true,
+    "node": true,
     "mocha": true
+  },
+  "rules": {
+    "indent": ["error", 4],
+    "object-curly-spacing": ["error", "never"],
+    "padded-blocks": ["off", "never"],
+    "max-len": ["error", 120],
+    "no-unused-expressions": ["off"],
+    "no-underscore-dangle": ["off"],
+    "prefer-template": ["off"],
+    "space-infix-ops": ["off"]
   }
 }

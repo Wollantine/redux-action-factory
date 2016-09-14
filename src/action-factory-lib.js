@@ -10,17 +10,26 @@ export const initialize = (conf) => {
     config.actionTypes = conf.actions;
 };
 
-export const getConfig = () => (
-    config.actionFactory.getConfig()
-);
+export const getConfig = () => {
+    if (!config.actionFactory) {
+        throw new Error('The method "initialize" should be called before "getConfig"');
+    }
+    return config.actionFactory.getConfig();
+};
 
-export const createAction = (actionName, params) => (
-    config.actionFactory.createAction(actionName, params)
-);
+export const createAction = (actionName, params) => {
+    if (!config.actionFactory) {
+        throw new Error('The method "initialize" should be called before "createAction"');
+    }
+    return config.actionFactory.createAction(actionName, params);
+};
 
-export const createRawAction = (actionName, params) => (
-    config.actionFactory.createRawAction(actionName, params)
-);
+export const createRawAction = (actionName, params) => {
+    if (!config.actionFactory) {
+        throw new Error('The method "initialize" should be called before "createRawAction"');
+    }
+    return config.actionFactory.createRawAction(actionName, params);
+};
 
 export const type = (actionName) => {
     if (typeof actionName === 'undefined') {

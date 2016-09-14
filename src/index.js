@@ -11,3 +11,5 @@ export const createRawAction = lib.createRawAction;
 export const type = lib.type;
 export const initialize = lib.initialize;
 export const getConfig = lib.getConfig;
+export const actionsValidationSchema = lib.actionsValidationSchema;
+export const actionsSanitizationSchema = lib.actionsSanitizationSchema;

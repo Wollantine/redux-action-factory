@@ -1,4 +1,5 @@
 import ActionFactory from './ActionFactory';
+import configSchema from './configSchema.json';
 
 export const config = {
     actionFactory: null,
@@ -43,3 +44,7 @@ export const type = (actionName) => {
     }
     return config.actionTypes[actionName].type;
 };
+
+export const actionsValidationSchema = configSchema.validation.properties.actions;
+
+export const actionsSanitizationSchema = configSchema.sanitization.properties.actions;

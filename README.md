@@ -7,9 +7,7 @@ npm install redux-action-factory --save
 ```
 
 ## Motivation
-In big projects, many action types have to be managed, each one with its Action Creator (sometimes a thunk that will dispatch 
-other actions and perform side-effects), and that generates a large number of files, complexity, and makes the project harder
-to maintain in general.
+In big projects, many action types have to be managed, each one with its Action Creator (sometimes a thunk that will dispatch other actions and perform side-effects), and that generates a large number of files, complexity, and makes the project harder to maintain in general.
 
 With Redux Action Factory, good maintenance is achieved by:
 
@@ -82,8 +80,7 @@ case type('ACTION_NAME'):
 ```
 
 #### Testing
-When testing, if you need to check if the proper action was created but you don't want to trigger any side effects or execute 
-any Action Creator code, you can use the `createRawAction` method as follows:
+When testing, if you need to check if the proper action was created but you don't want to trigger any side effects or execute any Action Creator code, you can use the `createRawAction` method as follows:
 ```js
 var createRawAction = require('redux-action-factory').createRawAction;
 
@@ -91,6 +88,22 @@ var createRawAction = require('redux-action-factory').createRawAction;
 createRawAction('ACTION_NAME', {actionParam1: 42, actionParam2: 'Other data'});
 ```
 
+Also, if you need to test the correctness of your actions.json file(s), you can use the exported objects `actionsSanitizationSchema` and `actionsValidationSchema` like this:
+```js
+var sanitization = require('redux-action-factory').actionsSanitizationSchema;
+var validation = require('redux-action-factory').actionsValidationSchema;
+var inspector = require('schema-inspector'); // Schema-Inspector should be installed
+var actions = require('./actions.json');
+var assert = require('chai').assert;
+
+describe('Actions Schema', function () {
+  it('should be a valid schema', function () {
+    inspector.sanitize(sanitization, actions);
+    var result = inspector.validate(validation, actions);
+    assert.ok(result.valid, result.format());
+  });
+});
+```
 
 ## API
 ### initialize
@@ -100,12 +113,8 @@ initialize(configuration)
 Creates and initializes the Action Factory every time it is called. Only the last call will be taken into account.
 - **`configuration`**: The configuration object for the factory. It allows the following properties:
     - **`actions`**: An actions specification object. Check [Actions API](#actions) for more details.
-    - **`actionCreators`(optional)**: A map of Action Creators names and functions. These functions should return dispatchable 
-    objects in your Redux system. A good practice is to define each of them in a separate file inside a specific folder, and
-    then require them all with a glob require library ([babel-plugin-import-glob](https://github.com/novemberborn/babel-plugin-import-glob), [node-glob](https://github.com/isaacs/node-glob), etc.).
-    - **`inject`(optional)**: An additional parameter that will be injected as a second parameter into every Action Creator call.
-    Any type allowed, also objects that can contain whatever fits you. Useful for passing interfaces for actions side-effects 
-    (like APIs interfaces) into every action creator.
+    - **`actionCreators`(optional)**: A map of Action Creators names and functions. These functions should return dispatchable objects in your Redux system. A good practice is to define each of them in a separate file inside a specific folder, and then require them all with a glob require library ([babel-plugin-import-glob](https://github.com/novemberborn/babel-plugin-import-glob), [node-glob](https://github.com/isaacs/node-glob), etc.).
+    - **`inject`(optional)**: An additional parameter that will be injected as a second parameter into every Action Creator call. Any type allowed, also objects that can contain whatever fits you. Useful for passing interfaces for actions side-effects (like APIs interfaces) into every action creator.
 
 ### Actions
 ```js
@@ -133,8 +142,7 @@ Returns the config passed in the last call to `initialize`.
 ```js
 createAction(actionName, params)
 ```
-If actionName and params are compliant with the configuration's actions specification, creates and returns a dispatchable action.
-Otherwise, throws an Error with human readable details on the failure.
+If actionName and params are compliant with the configuration's actions specification, creates and returns a dispatchable action. Otherwise, throws an Error with human readable details on the failure.
 - **`actionName`**: The Action's name in the specification.
 - **`params`(optional)**: The Action's data.
 

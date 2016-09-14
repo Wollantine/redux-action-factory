@@ -1,5 +1,5 @@
-var createAction = require('../../lib/index').default.createAction;
-var type = require('../../lib/index').default.type;
+var createAction = require('../../lib/index').createAction;
+var type = require('../../lib/index').type;
 
 // Quick mock of Redux + redux-thunk's dispatch
 var dispatch = function (action) {

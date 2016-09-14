@@ -1,15 +1,13 @@
-import {
-    createAction,
-    createRawAction,
-    type,
-    initialize,
-    getConfig,
-} from './action-factory-lib';
+/**
+ * Public interface
+ *
+ * This wrapper hides private methods intended only for testing the library.
+ */
 
-export default {
-    createAction,
-    createRawAction,
-    type,
-    initialize,
-    getConfig,
-};
+import * as lib from './action-factory-lib';
+
+export const createAction = lib.createAction;
+export const createRawAction = lib.createRawAction;
+export const type = lib.type;
+export const initialize = lib.initialize;
+export const getConfig = lib.getConfig;

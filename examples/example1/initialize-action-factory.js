@@ -1,4 +1,4 @@
-var initializeActionFactory = require('../../lib/index').default.initialize;
+var initializeActionFactory = require('../../lib/index').initialize;
 var actionsSchema = require('./actions.json');
 
 initializeActionFactory({

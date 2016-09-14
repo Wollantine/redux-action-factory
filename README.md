@@ -26,7 +26,7 @@ In your index.js you should put something similar to:
 
 index.js:
 ```js
-var initialize = require('redux-action-factory').default.initialize;
+var initialize = require('redux-action-factory').initialize;
 var actionsSpecification = require('./actions.json');
 
 initialize({
@@ -62,7 +62,7 @@ Example of actions.json:
 #### Use it to create actions
 Somewhere in your app:
 ```js
-var createAction = require('redux-action-factory').default.createAction;
+var createAction = require('redux-action-factory').createAction;
 
 dispatch(createAction('ACTION_NAME', {actionParam1: 42, actionParam2: 'Other data'}));
 ```
@@ -75,7 +75,7 @@ case 'ACTION_NAME':
 
 Just do:
 ```js
-var type = require('redux-action-factory').default.type;
+var type = require('redux-action-factory').type;
 
 [...]
 case type('ACTION_NAME'):
@@ -85,7 +85,7 @@ case type('ACTION_NAME'):
 When testing, if you need to check if the proper action was created but you don't want to trigger any side effects or execute 
 any Action Creator code, you can use the `createRawAction` method as follows:
 ```js
-var createRawAction = require('redux-action-factory').default.createRawAction;
+var createRawAction = require('redux-action-factory').createRawAction;
 
 // This won't execute the Action Creator function
 createRawAction('ACTION_NAME', {actionParam1: 42, actionParam2: 'Other data'});

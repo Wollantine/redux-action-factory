@@ -88,11 +88,11 @@ var createRawAction = require('redux-action-factory').createRawAction;
 createRawAction('ACTION_NAME', {actionParam1: 42, actionParam2: 'Other data'});
 ```
 
-Also, if you need to test the correctness of your actions.json file(s), you can use the exported objects `actionsSanitizationSchema` and `actionsValidationSchema` like this:
+Also, if you need to test the correctness of your `actions.json` file(s), you can use the exported objects `actionsSanitizationSchema` and `actionsValidationSchema` like this:
 ```js
 var sanitization = require('redux-action-factory').actionsSanitizationSchema;
 var validation = require('redux-action-factory').actionsValidationSchema;
-var inspector = require('schema-inspector'); // Schema-Inspector should be installed
+var inspector = require('schema-inspector'); // Schema-Inspector should be installed in your project
 var actions = require('./actions.json');
 var assert = require('chai').assert;
 
@@ -165,6 +165,19 @@ createRawAction(actionName, params)
 ```
 Same as `createAction`, but it always returns the raw action object without calling the actionCreator (if there was one).
 
+### actionsValidationSchema
+```js
+actionsValidationSchema
+```
+The schema against which the `configuration.actions` object will be validated after being sanitized.
+Useful for validating `actions.json` correctness at testing time.
+
+### actionsSanitizationSchema
+```js
+actionsSanitizationSchema
+```
+The schema by which the `configuration.actions` object will be sanitized before validation.
+Useful for validating `actions.json` correctness at testing time.
 
 ## Thanks and contributing
 Thanks to the boilerplate's authors Travelport-Ukraine for [npm-module-boilerplate-es6](https://github.com/Travelport-Ukraine/npm-module-boilerplate).

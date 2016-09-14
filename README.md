@@ -48,8 +48,12 @@ Example of actions.json:
     "ACTION_NAME": {
         "type": "myProject/ACTION",
         "args": {
-            "actionParam1": {"type": "number"},
-            "actionParam2": {"type": "string", "optional": true}
+            "type": "object",
+            "strict": true,
+            "properties": {
+                "actionParam1": {"type": "number"},
+                "actionParam2": {"type": "string", "optional": true}
+            }
         }
     }
 }
@@ -98,8 +102,8 @@ Creates and initializes the Action Factory every time it is called. Only the las
     - **`actions`**: An actions specification object. Check [Actions API](#actions) for more details.
     - **`actionCreators`(optional)**: A map of Action Creators names and functions. These functions should return dispatchable 
     objects in your Redux system. A good practice is to define each of them in a separate file inside a specific folder, and
-    then require them all with a glob require library (
-    - **`inject`(optional)**: An additional parameter that will be injected as a second parameter into every Action Creator call. 
+    then require them all with a glob require library ([babel-plugin-import-glob](https://github.com/novemberborn/babel-plugin-import-glob), [node-glob](https://github.com/isaacs/node-glob), etc.).
+    - **`inject`(optional)**: An additional parameter that will be injected as a second parameter into every Action Creator call.
     Any type allowed, also objects that can contain whatever fits you. Useful for passing interfaces for actions side-effects 
     (like APIs interfaces) into every action creator.
 

@@ -1,4 +1,6 @@
 # Redux Action Factory
+[![npm version](https://badge.fury.io/js/redux-action-factory.svg)](https://badge.fury.io/js/redux-action-factory) [![Build Status](https://travis-ci.org/kwirke/redux-action-factory.svg?branch=master)](https://travis-ci.org/kwirke/redux-action-factory) [![Coverage Status](https://coveralls.io/repos/github/kwirke/redux-action-factory/badge.svg?branch=master)](https://coveralls.io/github/kwirke/redux-action-factory?branch=master)
+
 Simple library for creating schema-validated Redux Actions (or thunks, promises, etc.). Powered by the awesomely awesome [Schema-Inspector](http://atinux.github.io/schema-inspector/).
 
 ## Installation
